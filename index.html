@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de-De">
+<head>
+    <!-- Responsive Design -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title -->
+    <title>Taschenrechner</title>
+
+    <!-- Meta Tags required for PWA -->
+    <meta name="apple-mobile-web-app-status-bar" content="#aa7700">
+    <meta name="theme-color" content="black">
+
+    <!-- Other Meta Tags-->
+    <meta name="description" content="Einfacher PWA Taschenrechner gemacht mit HTML, CSS und JS!">
+    
+    <!-- Links -->
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script src="index.js"></script>
+    <link rel="manifest" href="/Calculator/manifest.json">
+    <link rel="apple-touch-icon" href="images/icon_192.png">
+    <link rel="canonical" href="https://serapis342.github.io/Calculator/" />
+</head>
+<body>
+<div id="resultArea"></div>
+
+<table id="table">
+    <tr>
+        <td></td>
+        <td></td>
+        <td onclick="CE()">CE</td>
+        <td onclick="del()">DEL</td>
+    </tr>
+    <tr>
+        <td onclick="appendOperation(1)">1</td>
+        <td onclick="appendOperation(2)">2</td>
+        <td onclick="appendOperation(3)">3</td>
+        <td onclick="appendOperation(' / '); dotPressedHandler(false)" class="highlight operator">/</td>
+    </tr>
+    <tr>
+        <td onclick="appendOperation(4)">4</td>
+        <td onclick="appendOperation(5)">5</td>
+        <td onclick="appendOperation(6)">6</td>
+        <td onclick="appendOperation(' * '); dotPressedHandler(false)" class="highlight operator">X</td>
+    </tr>
+    <tr>
+        <td onclick="appendOperation(7)">7</td>
+        <td onclick="appendOperation(8)">8</td>
+        <td onclick="appendOperation(9)">9</td>
+        <td onclick="appendOperation(' + '); dotPressedHandler(false)" class="highlight operator">+</td>
+    </tr>
+    <tr>
+        <td onclick="appendOperation('.'); dotPressedHandler(true)" id=".">.</td>
+        <td onclick="appendOperation(0)">0</td>
+        <td onclick="calculateResult()" id="result">=</td>
+        <td onclick="appendOperation(' - '); dotPressedHandler(false)" class="highlight operator">-</td>
+    </tr>
+</table>
+
+<script>
+    window.addEventListener('load', () => {
+        registerSW();
+    });
+
+    // Register the Service Worker
+    async function registerSW() {
+        if ('serviceWorker' in navigator) {
+            try {
+                await navigator
+                    .serviceWorker
+                    .register('/Calculator/serviceworker.js');
+            } catch (e) {
+                console.log('SW registration failed');
+            }
+        }
+    }
+</script>
+</body>
+</html>

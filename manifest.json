@@ -1,0 +1,25 @@
+{
+  "name":"Taschenrechner",
+  "short_name":"Rechner",
+  "start_url":"/Calculator/",
+  "display":"standalone",
+  "background_color":"#505050",
+  "theme_color":"black",
+  "scope": "/Calculator/",
+  "description":"Einfacher PWA Taschenrechner gemacht mit HTML, CSS und JS!",
+  "icons":[
+    {
+      "src":"/Calculator/images/icon_192.png",
+      "sizes":"192x192",
+      "type":"image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src":"/Calculator/images/icon_512.png",
+      "sizes":"512x512",
+      "type":"image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "prefer_related_applications":false
+}
