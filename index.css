@@ -39,11 +39,11 @@ td:hover {
 }
 
 #result {
-    background-color: rgb(80, 22, 154);
+    background-color: rgb(20, 175, 55);
 }
 
 #result:hover {
-    background-color: rgb(100, 42, 174);
+    background-color: rgb(45, 200, 80);
 }
 
 .highlight {
