@@ -1,19 +1,24 @@
-const staticCacheName = "pwa";
+const staticCacheName = "calculator-site-pwa";
+const assets = [
+    "images/icon_192.png",
+    "images/icon_512.png",
+    "index.css",
+    "index.html",
+    "index.js",
+]
 
-self.addEventListener("install", function (e) {
-    e.waitUntil(
-        caches.open(staticCacheName).then(function (cache) {
-            return cache.addAll(["/"]);
-        })
-    );
+self.addEventListener("install", installEvent => {
+  installEvent.waitUntil(
+    caches.open(staticCacheName).then(cache => {
+      cache.addAll(assets)
+    })
+  );
 });
 
-self.addEventListener("fetch", function (event) {
-    console.log(event.request.url);
-
-    event.respondWith(
-        caches.match(event.request).then(function (response) {
-            return response || fetch(event.request);
-        })
-    );
+self.addEventListener("fetch", fetchEvent => {
+  fetchEvent.respondWith(
+    caches.match(fetchEvent.request).then(res => {
+      return res || fetch(fetchEvent.request)
+    })
+  );
 });
